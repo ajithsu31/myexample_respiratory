@@ -307,6 +307,7 @@ Mark **Yes/No/N/A** accordingly.
 - Examples: PTO request created/approved, email sent, document updated, profile changed
 - Mark **Yes** if: Judge correctly assessed state match.
 - Mark **No** if: Judge incorrectly assessed state match/mismatch. This includes cases where the expected solution is blank and the state hash scores 0, but the agent's write action was correct per the user's request — that is a ground-truth gap, not an agent error.
+- **Read-only tasks**: If the task is purely informational (no write actions expected or performed), the environment state is unchanged by definition. A state_hash of 0 on a read-only task is an evaluator error — it conflates output completeness (already scored by semantic matching) with environment state integrity. Correct assessment: state unchanged = 1.0.
 - Mark **N/A** if: No state hash evaluator was called.
 
 ---

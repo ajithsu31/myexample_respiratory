@@ -235,6 +235,7 @@ DO NOT PENALIZE: PRAGMA schema discovery, initial SharePoint exploration, findin
 - Do NOT just agree with the judge blindly. Verify the actual write action the agent performed and check if it produced the correct end state.
 - Mark Yes if: Judge correctly assessed state match and rationale references the specific write action.
 - Mark No if: Judge incorrectly assessed, or the agent's write action produced a different result than expected. This includes cases where the expected solution is blank and the state hash scores 0, but the agent's write action was correct per the user's request — that is a ground-truth gap, not an agent error.
+- Read-only tasks: If the task is purely informational (no write actions expected or performed), the environment state is unchanged by definition. A state_hash of 0 on a read-only task is an evaluator error — it conflates output completeness (already scored by semantic matching) with environment state integrity. Correct assessment: state unchanged = 1.0.
 - Mark N/A if: No state hash evaluator was called.
 
 ---
