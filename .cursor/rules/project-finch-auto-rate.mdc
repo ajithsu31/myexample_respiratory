@@ -198,7 +198,7 @@ Example of a trace error to flag:
 
 Note: Agent Trace evaluates the CORRECTNESS of arguments and results, not whether the steps were necessary (that is Agent Function's job). A step can be unnecessary but still have correct trace data.
 
-**Intermediate retries vs final-output errors**: Parameter-discovery errors in intermediate tool calls (e.g., missing a required parameter, wrong format) that are immediately corrected on the next call are treated as acceptable retries — mark Trace as **Yes** if the workflow completes correctly. Errors in the final answer tool (submit_answer) that cause rejection are trace-level errors — mark Trace as **No** even if corrected on retry.
+**Retries and trace correctness**: Single corrected retries are acceptable for Agent Trace — whether in intermediate tool calls or submit_answer. If the agent fixes the argument immediately on the next call and the workflow completes correctly, mark Trace as **Yes**. Only mark Trace as **No** for persistent unresolved errors, results that don't match environment data, or incorrect arguments that were never corrected.
 
 ### 3C. Agent Output
 
